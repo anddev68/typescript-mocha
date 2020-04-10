@@ -38,45 +38,45 @@ describe('Rangeクラス', () => {
 
         /* コピペですすめない */
         describe('整数の閉区間は指定した整数を含むかどうかを判定できる', () => {
-            it ('2は含まないこと', () => {
+            it ('2が指定された時、"false"と表示できること', () => {
                 assert (range.includes(2) === false);
             });
-            it ('3は含むこと', () => {
+            it ('3が指定された時、"true"と表示できること', () => {
                 assert (range.includes(3) === true);
             });
-            it ('8は含むこと', () => {
+            it ('8が指定された時、"true"と表示できること', () => {
                 assert (range.includes(8) === true);
             });
-            it ('9は含まないこと', () => {
+            it ('9が指定された時、"false"と表示できること', () => {
                 assert (range.includes(9) === false);
             });
         });
 
         describe('別の閉区間と等価かどうかを判断できる', () => {
-            it ('別の閉区間[3, 8]は等価であること', () => {
+            it ('[3, 8]が指定された時、"true"と表示できること', () => {
                 const target = new Range(3, 8);
                 assert (range.equals(target) === true);
             });
-            it ('別の閉区間[2, 8]は等価ではない', () => {
+            it ('[2, 8]が指定された時、"false"と表示できること', () => {
                 const target = new Range(2, 8);
                 assert (range.equals(target) === false);
             });
-            it ('別の閉区間[3, 9]は等価ではない', () => {
+            it ('[3, 9]が指定された時、"false"と表示できること', () => {
                 const target = new Range(3, 9);
                 assert (range.equals(target) === false);
             });
         });
 
         describe('別区間が完全に含まれるかどうかが判断できる', () => {
-            it ('[3, 8]に[3, 8]は含まれる', () => {
+            it ('[3, 8]が指定された時、"true"と表示できること', () => {
                 const target = new Range(3, 8);
                 assert (range.equals(target) === true);
             });
-            it ('[3, 8]に[3, 7]は含まれない', () => {
+            it ('[3, 7]が指定された時、"false"と表示できること', () => {
                 const target = new Range(3, 7);
                 assert (range.equals(target) === false);
             });
-            it ('[3, 8]に[2, 8]は含まれない', () => {
+            it ('[2, 8]が指定された時、"false"と表示できること', () => {
                 const target = new Range(2, 8);
                 assert (range.equals(target) === false);
             });
@@ -88,7 +88,7 @@ describe('Rangeクラス', () => {
             it('少数を閉区間に含むことはできませんが表示されること', () => {
                 assert.throws(() => {
                     throw new TypeError('少数を閉区間に含むことはできません');
-                }, );
+                }, '例外が投げられました');
             });
         });
     });
