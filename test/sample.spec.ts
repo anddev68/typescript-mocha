@@ -1,7 +1,6 @@
 import { Range } from '../src/sample';
 
 import * as assert from 'assert';
-import { exists } from 'fs';
 
 // 機能1
 //  - 状況
@@ -50,6 +49,11 @@ describe('Rangeクラス', () => {
             it ('9が指定された時、"false"と表示できること', () => {
                 assert (range.includes(9) === false);
             });
+            it  ('3.5が指定された時、少数を閉区間に含むことはできませんが表示されること', () => {
+                assert.throws(() => {
+                    range.includes(3.5);
+                }, 'RangeTypeError');
+            });
         });
 
         describe('別の閉区間と等価かどうかを判断できる', () => {
@@ -83,12 +87,12 @@ describe('Rangeクラス', () => {
         });
     });
 
-    describe('閉区間 [1.5, 8]の非正常系', () => {
+    describe('閉区間 [3.5, 8]の非正常系', () => {
         describe('整数閉区間を示すクラスであること', () => {
             it('少数を閉区間に含むことはできませんが表示されること', () => {
                 assert.throws(() => {
-                    throw new TypeError('少数を閉区間に含むことはできません');
-                }, '例外が投げられました');
+                    const _ = new Range(3.5, 8);
+                }, 'RangeTypeError');
             });
         });
     });
@@ -97,8 +101,8 @@ describe('Rangeクラス', () => {
         describe('上端点より下端点が大きい閉区間を作ることはできない', () => {
             it('上端点より下端点が大きい閉区間を作ることはできませんが表示されること', () => {
                 assert.throws(() => {
-                    throw new Error('上端点より下端点が大きい閉区間を作ることはできません');
-                }, '例外が投げられました');
+                    const _ = new Range(8, 3);
+                }, 'RangeReversedError');
             });
         });
     });
